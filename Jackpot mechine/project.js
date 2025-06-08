@@ -71,14 +71,71 @@ const Spin = () => {
         const symbolsCopy = [...symbols];
         for (let j = 0; j < COL; j++) {
             const randomIndex = Math.floor(Math.random() * symbolsCopy.length);
-            reels[j].push(symbolsCopy[randomIndex]);
-            symbolsCopy.splice(randomIndex, 1);
+            const selectedSymbol = symbolsCopy[randomIndex];
+            reels[i].push(selectedSymbol);
+            symbolsCopy.splice(randomIndex, 1); // Remove the selected symbol to avoid duplicates in the same row
         }
-        return reels;
+    }
+    return reels;
+}
+
+const transpose = (reels) => {
+    const rows = [];
+    for (let i = 0; i<ROW; i++){
+        rows.push([]);
+        for (let j = 0; j < COL; j++){
+            rows[i].push(reels[j][i]);
+        }
+    }
+    return rows;
+
+};
+
+const printRows = (rows) => {
+    for (const row of rows) {
+        let rowString = "";
+        for (const [i, symbol] of row.entries()) {
+            rowString += symbol;
+            if (i < row.length - 1) {
+                rowString += " | ";
+            }
+        }
+        console.log(rowString);
     }
 }
-Spin();
+
+const getWinnings = (rows, betAmount, lines) => {
+    let winnings = 0;
+    
+    for(let row = 0; row < lines; row++){
+        const symbols = rows[row];
+        let allsame  = true;
+
+        for(const symbol of symbols) {
+            if(symbol !== symbols[0]) {
+                allsame = false;
+                break;
+            }
+            if(allsame){
+                winnings += SYMBOLS_VALUES[symbols[0]] * betAmount;
+            }
+        }
+    }
+    return winnings;
+
+}
+
 
 let Balance =  Deposite();
 const lines = BetLines();
 const betAmount = BetAmount(Balance);
+
+const reels = Spin();
+const rows = transpose(reels);
+console.log(reels)
+printRows(rows);
+
+const winnings = getWinnings(rows, betAmount, lines);
+if(winnings > 0) {
+    console.log(`You won ${winnings}!`);
+}
