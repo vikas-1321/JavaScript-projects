@@ -1,0 +1,74 @@
+*{
+    margin: 0;;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: black;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.container{
+    width: 500px;
+    padding: 20px 30px;
+    /* margin: 100px auto; */
+    background-color: #dcdcdc;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border-radius: 20px ;
+}
+
+.container h1{
+    margin-bottom: 10px;
+    text-align: center ;
+}
+
+.container p {
+    margin-bottom: 10px;
+    font-weight: 300;
+    font-size: 1.4rem;
+}
+
+.container input{
+    width: 100%;
+    padding: 20px 10px 10px;
+    border: none;
+    border-bottom: 2px solid #000;
+    outline: none;
+    font-size: 1rem;
+    color: #000;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.container input:hover{
+    border: 2px solid #1c1a1a;
+    font-size: 1.2rem;
+    /* transition: all 0.2s ease; */
+}
+.container button{
+    width: 150px;
+    padding: 15px 10px;
+    border: none;
+    border-radius: 10px;    
+    background-color: #000;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.container button:hover{
+    background-color: #fff;
+    color: #000;
+}
+
+#qrCode img{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
